@@ -12,10 +12,10 @@ import {
   ArrowRight,
 } from "lucide-react";
 
-const WHATSAPP_URL =
-  "https://wa.me/5402631547393?text=Hola%20FLAMA%2C%20me%20gustaría%20pedir%20un%20presupuesto%20para...";
+import { contactConfig, whatsappUrl } from "@/lib/config";
 
-const MAPS_URL = "https://maps.app.goo.gl/bXJztkjjrgxnZ3LfA";
+const WHATSAPP_URL = whatsappUrl();
+const MAPS_URL = contactConfig.mapsUrl;
 
 const services = [
   { name: "Carteles 3D Iluminados", href: "/servicios/carteles-3d", tag: "Estrella" },
@@ -68,7 +68,7 @@ export function Header() {
               className="group flex items-center gap-1.5 text-[12px] tracking-wide transition-colors hover:text-whatsapp focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-whatsapp focus-visible:ring-offset-1 rounded"
             >
               <MessageCircle className="h-3 w-3 text-whatsapp transition-colors group-hover:text-whatsapp" aria-hidden="true" />
-              <span className="hidden sm:inline">0263 15-473-9193</span>
+              <span className="hidden sm:inline">{contactConfig.phone.display}</span>
               <span className="sm:hidden">WhatsApp</span>
             </a>
 
@@ -81,14 +81,14 @@ export function Header() {
               className="group flex items-center gap-1.5 text-[12px] tracking-wide transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-1 rounded"
             >
               <MapPin className="h-3 w-3 text-accent-secondary transition-colors group-hover:text-white" aria-hidden="true" />
-              <span className="hidden md:inline">Ladislao Segura 190, Junín, Mendoza</span>
+              <span className="hidden md:inline">{contactConfig.address}</span>
               <span className="md:hidden">Junín, Mendoza</span>
             </a>
           </div>
 
           <div className="flex items-center gap-1.5 text-[12px] tracking-wide">
             <Clock className="h-3 w-3 text-accent-secondary" aria-hidden="true" />
-            <span className="hidden sm:inline">Lun a Vie</span> 9:30–17:30
+            <span className="hidden sm:inline">{contactConfig.businessHours}</span>
           </div>
         </div>
       </div>
@@ -270,7 +270,7 @@ export function Header() {
                 <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-whatsapp/10">
                   <MessageCircle className="h-3.5 w-3.5 text-whatsapp" aria-hidden="true" />
                 </div>
-                0263 15-473-9193
+                {contactConfig.phone.display}
               </a>
               <a
                 href={MAPS_URL}
@@ -281,7 +281,7 @@ export function Header() {
                 <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent-secondary/8">
                   <MapPin className="h-3.5 w-3.5 text-accent-secondary" aria-hidden="true" />
                 </div>
-                Ladislao Segura 190, Junín, Mendoza
+                {contactConfig.address}
               </a>
             </div>
 

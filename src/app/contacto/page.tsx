@@ -12,6 +12,7 @@ import {
   Shirt,
 } from "lucide-react";
 import type { Metadata } from "next";
+import { contactConfig, whatsappUrl, instagramUrl } from "@/lib/config";
 
 export const metadata: Metadata = {
   title: "Contacto — FLAMA Cartelería Mendoza",
@@ -19,7 +20,7 @@ export const metadata: Metadata = {
     "Consultá a FLAMA por WhatsApp o visitanos en Ladislao Segura 190, Junín, Mendoza. Lunes a viernes 9:30–17:30 hs.",
 };
 
-const WA_BASE = "https://wa.me/5402631547393?text=";
+const WA_BASE = `https://wa.me/${contactConfig.phone.whatsappId}?text=`;
 
 const quickOptions = [
   {
@@ -76,21 +77,21 @@ const contactInfo = [
   {
     icon: MapPin,
     label: "Dirección",
-    value: "Ladislao Segura 190, Junín, Mendoza",
-    href: "https://maps.app.goo.gl/bXJztkjjrgxnZ3LfA",
+    value: contactConfig.address,
+    href: contactConfig.mapsUrl,
     external: true,
   },
   {
     icon: Phone,
     label: "Teléfono",
-    value: "0263 15-473-9193",
-    href: "tel:+5402631547393",
+    value: contactConfig.phone.display,
+    href: `tel:${contactConfig.phone.international}`,
     external: false,
   },
   {
     icon: Clock,
     label: "Horario",
-    value: "Lunes a Viernes, 9:30 a 17:30",
+    value: contactConfig.businessHours,
     href: null,
     external: false,
   },
@@ -221,7 +222,7 @@ export default function ContactoPage() {
 
             {/* Instagram */}
             <a
-              href="https://www.instagram.com/flamastudio.ar"
+              href={instagramUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-start gap-4 rounded-2xl border border-border bg-white p-5 transition-all hover:border-accent/20 hover:shadow-md"
@@ -247,7 +248,7 @@ export default function ContactoPage() {
                   Instagram
                 </p>
                 <p className="mt-0.5 text-[15px] font-semibold text-foreground">
-                  @flamastudio.ar
+                  @{contactConfig.instagram}
                 </p>
               </div>
             </a>

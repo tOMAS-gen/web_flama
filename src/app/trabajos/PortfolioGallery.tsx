@@ -11,8 +11,9 @@ import {
   type ServiceFilter,
   type SectorFilter,
 } from "@/data/portfolio";
+import { contactConfig } from "@/lib/config";
 
-const WA_BASE = "https://wa.me/5402631547393?text=";
+const WA_BASE = `https://wa.me/${contactConfig.phone.whatsappId}?text=`;
 
 export function PortfolioGallery() {
   const router = useRouter();

@@ -2,10 +2,10 @@
 
 import Link from "next/link";
 import { Phone, MapPin, Clock, ArrowUpRight, MessageCircle } from "lucide-react";
+import { contactConfig, whatsappUrl, instagramUrl } from "@/lib/config";
 
-const MAPS_URL = "https://maps.app.goo.gl/bXJztkjjrgxnZ3LfA";
-const WHATSAPP_URL =
-  "https://wa.me/5402631547393?text=Hola%20FLAMA%2C%20me%20gustaría%20pedir%20un%20presupuesto%20para...";
+const MAPS_URL = contactConfig.mapsUrl;
+const WHATSAPP_URL = whatsappUrl();
 
 const serviceLinks = [
   { name: "Carteles 3D", href: "/servicios/carteles-3d" },
@@ -96,7 +96,7 @@ export function Footer() {
               Escribinos por WhatsApp
             </a>
             <a
-              href="https://www.instagram.com/flamastudio.ar"
+              href={instagramUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="group inline-flex items-center gap-2.5 rounded-xl border border-white/10 px-5 py-3.5 text-[14px] font-semibold text-white/70 transition-all hover:border-white/20 hover:text-white"
@@ -115,7 +115,7 @@ export function Footer() {
                 <circle cx="12" cy="12" r="5" />
                 <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
               </svg>
-              @flamastudio.ar
+              @{contactConfig.instagram}
             </a>
           </div>
         </div>
@@ -175,24 +175,22 @@ export function Footer() {
                 >
                   <MapPin className="mt-0.5 h-3.5 w-3.5 shrink-0 text-accent-secondary/70" aria-hidden="true" />
                   <span className="leading-snug">
-                    Ladislao Segura 190
-                    <br />
-                    Junín, Mendoza
+                    {contactConfig.address}
                   </span>
                 </a>
               </li>
               <li>
                 <a
-                  href="tel:+5402631547393"
+                  href={`tel:${contactConfig.phone.international}`}
                   className="flex items-center gap-2.5 text-[13px] text-white/50 transition-colors hover:text-white"
                 >
                   <Phone className="h-3.5 w-3.5 shrink-0 text-accent-secondary/70" aria-hidden="true" />
-                  0263 15-473-9193
+                  {contactConfig.phone.display}
                 </a>
               </li>
               <li className="flex items-center gap-2.5 text-[13px] text-white/30">
                 <Clock className="h-3.5 w-3.5 shrink-0 text-accent-secondary/50" aria-hidden="true" />
-                Lun a Vie, 9:30–17:30
+                {contactConfig.businessHours}
               </li>
             </ul>
           </div>

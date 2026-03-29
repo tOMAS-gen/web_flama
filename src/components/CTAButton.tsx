@@ -1,8 +1,8 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { whatsappUrl } from "@/lib/config";
 
-const WHATSAPP_URL =
-  "https://wa.me/5402631547393?text=Hola%20FLAMA%2C%20me%20gustaría%20pedir%20un%20presupuesto%20para...";
+const WHATSAPP_URL = whatsappUrl();
 
 type Variant = "primary" | "outline" | "whatsapp";
 

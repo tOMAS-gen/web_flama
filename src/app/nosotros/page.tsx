@@ -7,6 +7,7 @@ import {
   ArrowUpRight,
 } from "lucide-react";
 import type { Metadata } from "next";
+import { contactConfig } from "@/lib/config";
 
 export const metadata: Metadata = {
   title: "Quiénes Somos — FLAMA Identidad Empresarial, Junín Mendoza",
@@ -339,10 +340,10 @@ export default function NosotrosPage() {
               </p>
               <div className="mt-6 space-y-3">
                 {[
-                  { label: "Dirección", value: "Ladislao Segura 190, Junín, Mendoza" },
-                  { label: "Teléfono", value: "0263 15-473-9193" },
-                  { label: "Horario", value: "Lunes a Viernes, 9:30 a 17:30" },
-                  { label: "Instagram", value: "@flamastudio.ar" },
+                  { label: "Dirección", value: contactConfig.address },
+                  { label: "Teléfono", value: contactConfig.phone.display },
+                  { label: "Horario", value: contactConfig.businessHours },
+                  { label: "Instagram", value: `@${contactConfig.instagram}` },
                 ].map((item) => (
                   <div
                     key={item.label}
@@ -358,7 +359,7 @@ export default function NosotrosPage() {
                 ))}
               </div>
               <a
-                href="https://maps.app.goo.gl/bXJztkjjrgxnZ3LfA"
+                href={contactConfig.mapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-6 inline-flex items-center gap-2 rounded-xl bg-foreground px-5 py-3 text-[14px] font-bold text-white transition hover:bg-foreground/90"

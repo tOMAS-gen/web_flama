@@ -4,6 +4,7 @@ import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
+import { contactConfig } from "@/lib/config";
 
 const jakarta = Plus_Jakarta_Sans({
   variable: "--font-jakarta",
@@ -18,16 +19,14 @@ export const metadata: Metadata = {
   },
   description:
     "Carteles 3D iluminados, ploteo vehicular, vinilos y neón para tu negocio. Taller propio, instalación incluida. Toda Mendoza. Consultá por WhatsApp.",
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ?? "https://flamastudio.ar"
-  ),
+  metadataBase: new URL(contactConfig.siteUrl),
   openGraph: {
     siteName: "FLAMA",
     locale: "es_AR",
     type: "website",
     images: [
       {
-        url: `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://flamastudio.ar"}/api/og`,
+        url: `${contactConfig.siteUrl}/api/og`,
         width: 1200,
         height: 630,
         type: "image/png",
@@ -38,7 +37,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     images: [
-      `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://flamastudio.ar"}/api/og`,
+      `${contactConfig.siteUrl}/api/og`,
     ],
   },
   other: {
