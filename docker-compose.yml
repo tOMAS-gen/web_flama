@@ -2,7 +2,13 @@ services:
   web:
     image: ghcr.io/tomas-gen/web_flama:latest
     ports:
-      - "${PORT:-3000}:3000"
+      - "3000:3000"
     environment:
-      - HOSTNAME=0.0.0.0
+      - NEXT_PUBLIC_PHONE_DISPLAY=0263 15-473-9193
+      - NEXT_PUBLIC_PHONE_INTERNATIONAL=+549263154739193
+      - NEXT_PUBLIC_WHATSAPP_ID=549263154739193
+      - NEXT_PUBLIC_ADDRESS=Ladislao Segura 190, M5573 Junín, Mendoza
+      - NEXT_PUBLIC_INSTAGRAM=flamastudio.ar
+      - NEXT_PUBLIC_MAPS_URL=https://maps.app.goo.gl/tDXcngSKQLuvmzuZ7
+      - NEXT_PUBLIC_HOURS=Lun a Vie, 9:30–17:30
     restart: unless-stopped
