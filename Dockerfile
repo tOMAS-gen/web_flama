@@ -12,23 +12,16 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-ARG NEXT_PUBLIC_SITE_URL=https://flamastudio.ar
-ARG NEXT_PUBLIC_PHONE_DISPLAY="0263 15-473-9193"
-ARG NEXT_PUBLIC_PHONE_INTERNATIONAL=+549263154739193
-ARG NEXT_PUBLIC_WHATSAPP_ID=549263154739193
-ARG NEXT_PUBLIC_ADDRESS="Ladislao Segura 190, M5573 Junín, Mendoza"
-ARG NEXT_PUBLIC_INSTAGRAM=flamastudio.ar
-ARG NEXT_PUBLIC_MAPS_URL=https://maps.app.goo.gl/tDXcngSKQLuvmzuZ7
-ARG NEXT_PUBLIC_HOURS="Lun a Vie, 9:30–17:30"
-
-ENV NEXT_PUBLIC_SITE_URL=$NEXT_PUBLIC_SITE_URL
-ENV NEXT_PUBLIC_PHONE_DISPLAY=$NEXT_PUBLIC_PHONE_DISPLAY
-ENV NEXT_PUBLIC_PHONE_INTERNATIONAL=$NEXT_PUBLIC_PHONE_INTERNATIONAL
-ENV NEXT_PUBLIC_WHATSAPP_ID=$NEXT_PUBLIC_WHATSAPP_ID
-ENV NEXT_PUBLIC_ADDRESS=$NEXT_PUBLIC_ADDRESS
-ENV NEXT_PUBLIC_INSTAGRAM=$NEXT_PUBLIC_INSTAGRAM
-ENV NEXT_PUBLIC_MAPS_URL=$NEXT_PUBLIC_MAPS_URL
-ENV NEXT_PUBLIC_HOURS=$NEXT_PUBLIC_HOURS
+# Placeholders get baked into JS at build time,
+# then replaced at container start by entrypoint.sh
+ENV NEXT_PUBLIC_SITE_URL=https://flamastudio.ar
+ENV NEXT_PUBLIC_PHONE_DISPLAY=__PHONE_DISPLAY__
+ENV NEXT_PUBLIC_PHONE_INTERNATIONAL=__PHONE_INTERNATIONAL__
+ENV NEXT_PUBLIC_WHATSAPP_ID=__WHATSAPP_ID__
+ENV NEXT_PUBLIC_ADDRESS=__ADDRESS__
+ENV NEXT_PUBLIC_INSTAGRAM=__INSTAGRAM__
+ENV NEXT_PUBLIC_MAPS_URL=__MAPS_URL__
+ENV NEXT_PUBLIC_HOURS=__HOURS__
 
 RUN npm run build
 
@@ -46,9 +39,11 @@ RUN adduser --system --uid 1001 nextjs
 COPY --from=builder /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+COPY --chown=nextjs:nodejs entrypoint.sh /app/entrypoint.sh
+RUN chmod +x /app/entrypoint.sh
 
 USER nextjs
 
 EXPOSE 3000
 
-CMD ["node", "server.js"]
+ENTRYPOINT ["/app/entrypoint.sh"]
