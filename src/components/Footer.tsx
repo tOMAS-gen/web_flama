@@ -223,13 +223,36 @@ export function Footer() {
         </div>
 
         {/* ── Bottom bar ── */}
-        <div className="flex flex-col items-center justify-between gap-2 py-6 sm:flex-row">
-          <p className="text-[12px] text-white/20" suppressHydrationWarning>
-            © {new Date().getFullYear()} FLAMA. Todos los derechos reservados.
-          </p>
-          <p className="text-[11px] text-white/15">
-            Identidad empresarial · Junín, Mendoza, Argentina
-          </p>
+        <div className="flex flex-col items-center justify-between gap-3 py-6 sm:flex-row">
+          <div className="flex flex-col items-center gap-1 sm:items-start">
+            <p className="text-[12px] text-white/20" suppressHydrationWarning>
+              © {new Date().getFullYear()} FLAMA. Todos los derechos reservados.
+            </p>
+            <p className="text-[11px] text-white/15">
+              Identidad empresarial · Junín, Mendoza, Argentina
+            </p>
+          </div>
+
+          <a
+            href="https://genmarketing.com.ar"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Desarrollado por genmarketing"
+            className="group inline-flex items-baseline gap-1.5 rounded-sm text-[12px] text-white/40 transition-colors hover:text-white/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
+          >
+            Desarrollado por
+            <span
+              className="text-[14px]"
+              style={{ fontFamily: "var(--font-montserrat), sans-serif" }}
+            >
+              <span className="font-semibold text-purple-400 transition-colors group-hover:text-purple-300">
+                ›gen
+              </span>
+              <span className="font-medium text-white transition-colors group-hover:text-white/80">
+                marketing
+              </span>
+            </span>
+          </a>
         </div>
       </div>
     </footer>
